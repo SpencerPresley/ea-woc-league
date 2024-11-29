@@ -1,4 +1,6 @@
-# nhl-club-stats
+# EA WOC League
+
+[![codecov](https://codecov.io/github/SpencerPresley/ea-woc-league/branch/master/graph/badge.svg?token=QDEI2JRTTM)](https://codecov.io/github/SpencerPresley/ea-woc-league)
 
 Python package for parsing and analyzing NHL EASHL club statistics.
 
@@ -119,10 +121,6 @@ nhl-club-stats/
 pdm add package-name        # add new dependency
 pdm add -G test package-name  # add new test dependency
 ```
-
-## Test Graph
-
-[![codecov](https://codecov.io/github/SpencerPresley/ea-woc-league/branch/master/graph/badge.svg?token=QDEI2JRTTM)](https://codecov.io/github/SpencerPresley/ea-woc-league)
 
 ## License
 
