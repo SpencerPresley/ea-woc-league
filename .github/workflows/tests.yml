@@ -28,7 +28,8 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm install -G dev
+        pdm lock
+        pdm install --dev
         
     - name: Run tests with coverage
       run: |

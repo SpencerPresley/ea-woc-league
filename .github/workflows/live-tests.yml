@@ -25,7 +25,8 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm install -G :all
+        pdm lock
+        pdm install --dev
         
     - name: Run live tests
       run: |
