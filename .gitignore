@@ -167,5 +167,11 @@ cython_debug/
 # Coverage reports
 coverage.xml
 
+# Local Environment Variables
 .env
+
+# Cursor
 .cursorrules
+
+# Mac OS
+.DS_Store
