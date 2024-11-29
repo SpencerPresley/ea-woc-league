@@ -30,7 +30,8 @@ jobs:
       run: |
         pdm config python.use_venv true
         pdm venv create
-        pdm install --dev
+        pdm install
+        pdm add -d pytest pytest-cov pytest-mock
         
     - name: Run tests with coverage
       run: |
