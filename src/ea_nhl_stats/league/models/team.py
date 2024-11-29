@@ -1,207 +1,118 @@
-"""Team model for league management.
+"""Team model for the league management system.
 
-This module defines the core team model and its capabilities for roster
-and trade management.
+This module defines the core team model for tracking club data and match history.
+It provides classes for managing team information, player rosters, and match records.
 """
 
-from datetime import datetime
-from typing import List, Dict, Optional, Set
+from typing import Dict, List, Optional, Set
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
-from ea_nhl_stats.league.enums.league_types import LeagueTier
-from ea_nhl_stats.league.models.player import LeaguePlayer
-from ea_nhl_stats.league.models.trade import TradeParticipant
-
-
-class TeamRoster(BaseModel):
-    """Team roster management.
-    
-    Attributes:
-        active_players: Currently active players
-        inactive_players: Players on IR, suspended, etc.
-    """
-    
-    active_players: List[LeaguePlayer] = Field(
-        default_factory=list,
-        description="Currently active players"
-    )
-    inactive_players: List[LeaguePlayer] = Field(
-        default_factory=list,
-        description="Players on IR, suspended, etc."
-    )
-    
-    @property
-    def all_players(self) -> List[LeaguePlayer]:
-        """Get all players on the roster.
-        
-        Returns:
-            List[LeaguePlayer]: All players, active and inactive
-        """
-        return self.active_players + self.inactive_players
-    
-    @property
-    def total_salary(self) -> int:
-        """Calculate total salary for all players.
-        
-        Returns:
-            int: Total salary amount
-        """
-        return sum(
-            p.contract.salary for p in self.all_players
-            if p.contract is not None
-        )
-    
-    def add_player(self, player: LeaguePlayer, active: bool = True) -> None:
-        """Add a player to the roster.
-        
-        Args:
-            player: Player to add
-            active: Whether to add as active (True) or inactive (False)
-            
-        Raises:
-            ValueError: If player already on roster
-        """
-        if player in self.all_players:
-            raise ValueError(f"Player {player.name} already on roster")
-            
-        if active:
-            self.active_players.append(player)
-        else:
-            self.inactive_players.append(player)
-    
-    def remove_player(self, player: LeaguePlayer) -> None:
-        """Remove a player from the roster.
-        
-        Args:
-            player: Player to remove
-            
-        Raises:
-            ValueError: If player not on roster
-        """
-        if player in self.active_players:
-            self.active_players.remove(player)
-        elif player in self.inactive_players:
-            self.inactive_players.remove(player)
-        else:
-            raise ValueError(f"Player {player.name} not on roster")
-    
-    def set_player_status(self, player: LeaguePlayer, active: bool) -> None:
-        """Change a player's active/inactive status.
-        
-        Args:
-            player: Player to update
-            active: New status (True for active, False for inactive)
-            
-        Raises:
-            ValueError: If player not on roster
-        """
-        try:
-            self.remove_player(player)
-            self.add_player(player, active)
-        except ValueError as e:
-            raise ValueError(f"Player {player.name} not on roster") from e
+from ea_nhl_stats.models.game.ea_match import Match
+from ea_nhl_stats.league.models.team_history import SeasonTeamStats
 
 
 class LeagueTeam(BaseModel):
-    """Core team model for league management.
+    """Base team model for all league clubs.
     
-    Attributes:
-        team_id: Unique identifier for the team
-        name: Team's display name
-        tier: Team's league tier
-        roster: Team's player roster
-        ea_team_id: Link to EA NHL team ID (if any)
+    This class represents a team in the league system. It tracks team information,
+    player rosters, and match history. The class provides functionality for
+    managing team statistics and EA NHL integration.
     """
     
-    team_id: UUID = Field(
+    # Core team identification
+    id: UUID = Field(
         default_factory=uuid4,
         description="Unique identifier for the team"
     )
     name: str = Field(description="Team's display name")
-    tier: LeagueTier = Field(description="Team's league tier")
-    roster: TeamRoster = Field(
-        default_factory=TeamRoster,
-        description="Team's player roster"
+    
+    # Statistics tracking
+    current_season: int = Field(
+        gt=0,  # Must be positive
+        description="Current season number"
     )
-    ea_team_id: Optional[str] = Field(
-        default=None,
-        description="Link to EA NHL team ID"
+    season_stats: Dict[int, SeasonTeamStats] = Field(
+        default_factory=dict,
+        description="Stats for each season"
     )
     
-    def sign_player(self, player: LeaguePlayer) -> LeaguePlayer:
-        """Add a signed player to the roster.
+    # EA NHL integration
+    ea_club_id: Optional[str] = Field(
+        default=None,
+        description="Link to EA NHL club ID"
+    )
+    
+    # Roster tracking
+    player_ids: Set[UUID] = Field(
+        default_factory=set,
+        description="UUIDs of current players"
+    )
+    manager_ids: Set[UUID] = Field(
+        default_factory=set,
+        description="UUIDs of current managers"
+    )
+    
+    def add_match(self, match: Match) -> None:
+        """Add a match to the team's history.
+        
+        This method processes a match and updates the current season's statistics.
+        If this is the first match of the season, it automatically creates the
+        season stats container.
         
         Args:
-            player: Player to add
+            match: The completed match to add
             
-        Returns:
-            LeaguePlayer: Updated player instance
-            
-        Raises:
-            ValueError: If player already on roster or signed to wrong team
+        Note:
+            This method automatically updates all relevant season statistics.
         """
-        if player.team_id != self.team_id:
-            raise ValueError(
-                f"Player {player.name} not signed to team {self.name}"
+        # Create season stats if this is first match
+        if self.current_season not in self.season_stats:
+            self.season_stats[self.current_season] = SeasonTeamStats(
+                season=self.current_season
             )
         
-        self.roster.add_player(player)
-        return player
+        # Get our club's stats from the match
+        club_stats = None
+        if str(self.ea_club_id) in match.clubs:
+            club_stats = match.clubs[str(self.ea_club_id)]
+        
+        if not club_stats:
+            return  # Not our match
+            
+        # Add match to history and update stats
+        season = self.season_stats[self.current_season]
+        season.add_match(match.match_id, club_stats)
     
-    def release_player(self, player: LeaguePlayer) -> LeaguePlayer:
-        """Release a player from the roster.
+    def add_player(self, player_id: UUID) -> None:
+        """Add a player to the team's roster.
         
         Args:
-            player: Player to release
-            
-        Returns:
-            LeaguePlayer: Updated player instance
-            
-        Raises:
-            ValueError: If player not on roster
+            player_id: UUID of the player to add
         """
-        self.roster.remove_player(player)
-        return player.release_from_team()
+        self.player_ids.add(player_id)
     
-    def propose_trade(
-        self,
-        other_team: 'LeagueTeam',
-        outgoing_players: List[LeaguePlayer],
-        incoming_players: List[LeaguePlayer],
-        details: Optional[Dict] = None
-    ) -> TradeParticipant:
-        """Create a trade proposal with another team.
+    def remove_player(self, player_id: UUID) -> None:
+        """Remove a player from the team's roster.
         
         Args:
-            other_team: Team to trade with
-            outgoing_players: Players to trade away
-            incoming_players: Players to receive
-            details: Additional trade details
-            
-        Returns:
-            TradeParticipant: This team's trade participation
-            
-        Raises:
-            ValueError: If any players not on correct rosters
+            player_id: UUID of the player to remove
         """
-        # Verify outgoing players are on our roster
-        for player in outgoing_players:
-            if player not in self.roster.all_players:
-                raise ValueError(
-                    f"Player {player.name} not on {self.name}'s roster"
-                )
+        self.player_ids.discard(player_id)
+    
+    def add_manager(self, manager_id: UUID) -> None:
+        """Add a manager to the team's staff.
         
-        # Verify incoming players are on other team's roster
-        for player in incoming_players:
-            if player not in other_team.roster.all_players:
-                raise ValueError(
-                    f"Player {player.name} not on {other_team.name}'s roster"
-                )
+        Args:
+            manager_id: UUID of the manager to add
+        """
+        self.manager_ids.add(manager_id)
+    
+    def remove_manager(self, manager_id: UUID) -> None:
+        """Remove a manager from the team's staff.
         
-        return TradeParticipant(
-            team_id=self.team_id,
-            outgoing_players=outgoing_players,
-            incoming_players=incoming_players
-        ) 
+        Args:
+            manager_id: UUID of the manager to remove
+        """
+        self.manager_ids.discard(manager_id) 

@@ -10,7 +10,7 @@ from uuid import UUID
 
 from pydantic import BaseModel, Field, computed_field
 
-from ea_nhl_stats.league_v2.enums.types import Position
+from ea_nhl_stats.league.enums.types import Position
 from ea_nhl_stats.models.game.ea_player_stats import PlayerStats
 
 

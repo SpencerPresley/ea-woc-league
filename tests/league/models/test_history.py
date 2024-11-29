@@ -6,8 +6,8 @@ from uuid import UUID
 
 import pytest
 
-from ea_nhl_stats.league_v2.models.history import SeasonStats
-from ea_nhl_stats.league_v2.enums.types import Position
+from ea_nhl_stats.league.models.history import SeasonStats
+from ea_nhl_stats.league.enums.types import Position
 from ea_nhl_stats.models.game.ea_match import Match
 
 if TYPE_CHECKING:

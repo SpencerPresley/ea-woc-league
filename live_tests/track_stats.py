@@ -5,9 +5,9 @@ from typing import Dict, List, Set
 from uuid import uuid4, UUID
 from collections import defaultdict
 
-from ea_nhl_stats.league_v2.models.player import LeaguePlayer
-from ea_nhl_stats.league_v2.models.team import LeagueTeam
-from ea_nhl_stats.league_v2.enums.types import Position
+from ea_nhl_stats.league.models.player import LeaguePlayer
+from ea_nhl_stats.league.models.team import LeagueTeam
+from ea_nhl_stats.league.enums.types import Position
 from ea_nhl_stats.models.game.ea_match import Match
 from ea_nhl_stats.models.game.match_analytics import MatchAnalytics
 

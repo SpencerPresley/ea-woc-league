@@ -1,1 +1,1 @@
-"""Tests for league models package.""" 
+"""Tests for league models.""" 

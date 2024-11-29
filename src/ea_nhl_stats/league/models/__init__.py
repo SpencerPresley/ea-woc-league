@@ -1,12 +1,5 @@
-"""League models package.
+"""League V2 models package."""
 
-This package contains the core models for league management, including
-teams, players, and their relationships.
-"""
+from .history import SeasonStats
 
-from .player import LeaguePlayer, PlayerContract
-
-__all__ = [
-    'LeaguePlayer',
-    'PlayerContract',
-] 
+__all__ = ['SeasonStats']

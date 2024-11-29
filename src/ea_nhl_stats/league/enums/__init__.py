@@ -1,9 +1,5 @@
-"""League enumeration package."""
+"""League V2 enums package."""
 
-from .league_types import LeagueTier, ManagerRole, LeagueStateType
+from .types import Position
 
-__all__ = [
-    'LeagueTier',
-    'ManagerRole',
-    'LeagueStateType',
-] 
+__all__ = ['Position']
