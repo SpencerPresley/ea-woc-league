@@ -120,6 +120,10 @@ pdm add package-name        # add new dependency
 pdm add -G test package-name  # add new test dependency
 ```
 
+## Test Graph
+
+[![codecov](https://codecov.io/github/SpencerPresley/ea-woc-league/branch/master/graph/badge.svg?token=QDEI2JRTTM)](https://codecov.io/github/SpencerPresley/ea-woc-league)
+
 ## License
 
 MIT License
