@@ -1,17 +1,19 @@
-"""Tests for player history tracking."""
+"""Tests for participant history tracking."""
 
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING
-from uuid import UUID, uuid4
+from uuid import uuid4
 
 import pytest
 from pydantic import ValidationError
 
+from ea_nhl_stats.models.game.enums import Position
+from ea_nhl_stats.league.enums.league_types import ManagerRole
 from ea_nhl_stats.league.models.player_history import (
-    PlayerHistory,
-    Transaction,
     TransactionType,
-    ContractHistory
+    Transaction,
+    ContractHistory,
+    ParticipantHistory
 )
 
 if TYPE_CHECKING:
@@ -21,149 +23,203 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture
-def player_id() -> UUID:
-    """Create a player ID for testing."""
+def team_id():
+    """Generate a test team ID."""
     return uuid4()
 
 
 @pytest.fixture
-def team_id() -> UUID:
-    """Create a team ID for testing."""
+def participant_id():
+    """Generate a test participant ID."""
     return uuid4()
 
 
 @pytest.fixture
-def history(player_id: UUID) -> PlayerHistory:
-    """Create a player history for testing."""
-    return PlayerHistory(player_id=player_id)
-
-
-class TestTransaction:
-    """Test cases for Transaction model."""
-    
-    def test_valid_transaction(self, team_id: UUID) -> None:
-        """Test creation of valid transaction."""
-        transaction = Transaction(
-            timestamp=datetime.now(),
-            type=TransactionType.FREE_AGENT_SIGNING,
-            to_team_id=team_id,
-            details={"salary": 1_000_000}
-        )
-        assert transaction.type == TransactionType.FREE_AGENT_SIGNING
-        assert transaction.to_team_id == team_id
-        assert transaction.details["salary"] == 1_000_000
-    
-    def test_trade_transaction(self, team_id: UUID) -> None:
-        """Test creation of trade transaction."""
-        new_team_id = uuid4()
-        transaction = Transaction(
-            timestamp=datetime.now(),
-            type=TransactionType.TRADE,
-            from_team_id=team_id,
-            to_team_id=new_team_id
-        )
-        assert transaction.from_team_id == team_id
-        assert transaction.to_team_id == new_team_id
+def base_contract_data(team_id):
+    """Generate base contract test data."""
+    now = datetime.now()
+    return {
+        "team_id": team_id,
+        "salary": 1000000,
+        "length_years": 2,
+        "start_date": now,
+        "end_date": now + timedelta(days=730)
+    }
 
 
 class TestContractHistory:
-    """Test cases for ContractHistory model."""
+    """Test cases for ContractHistory."""
     
-    def test_valid_contract(self, team_id: UUID) -> None:
-        """Test creation of valid contract history."""
-        now = datetime.now()
+    def test_player_contract(self, base_contract_data):
+        """Test creating a player contract."""
         contract = ContractHistory(
-            team_id=team_id,
-            salary=1_000_000,
-            length_years=2,
-            start_date=now,
-            end_date=now + timedelta(days=730)
+            **base_contract_data,
+            position=Position.CENTER
         )
-        assert contract.team_id == team_id
-        assert contract.salary == 1_000_000
-        assert contract.length_years == 2
-        assert contract.actual_end_date is None
+        assert not contract.is_manager_contract
+        assert contract.position == Position.CENTER
+        assert contract.manager_role is None
     
-    def test_early_termination(self, team_id: UUID) -> None:
-        """Test early contract termination."""
-        now = datetime.now()
+    def test_manager_contract(self, base_contract_data):
+        """Test creating a manager contract."""
         contract = ContractHistory(
+            **base_contract_data,
+            manager_role=ManagerRole.GM
+        )
+        assert contract.is_manager_contract
+        assert contract.manager_role == ManagerRole.GM
+        assert contract.position is None
+    
+    def test_contract_active_status(self, base_contract_data):
+        """Test contract active status checking."""
+        contract = ContractHistory(**base_contract_data, position=Position.CENTER)
+        
+        # Should be active now
+        assert contract.is_active()
+        
+        # Should be active at start
+        assert contract.is_active(base_contract_data["start_date"])
+        
+        # Should be active at end
+        assert contract.is_active(base_contract_data["end_date"])
+        
+        # Should not be active before start
+        assert not contract.is_active(
+            base_contract_data["start_date"] - timedelta(days=1)
+        )
+        
+        # Should not be active after end
+        assert not contract.is_active(
+            base_contract_data["end_date"] + timedelta(days=1)
+        )
+        
+        # Should not be active after early termination
+        contract.actual_end_date = datetime.now()
+        assert not contract.is_active()
+
+
+class TestParticipantHistory:
+    """Test cases for ParticipantHistory."""
+    
+    def test_add_player_contract(self, participant_id, team_id):
+        """Test adding a player contract."""
+        history = ParticipantHistory(participant_id=participant_id)
+        
+        now = datetime.now()
+        history.add_contract(
             team_id=team_id,
-            salary=1_000_000,
+            salary=1000000,
             length_years=2,
             start_date=now,
             end_date=now + timedelta(days=730),
-            actual_end_date=now + timedelta(days=365)
-        )
-        assert contract.actual_end_date is not None
-
-
-class TestPlayerHistory:
-    """Test cases for PlayerHistory model."""
-    
-    def test_empty_history(self, history: PlayerHistory) -> None:
-        """Test newly created history."""
-        assert not history.transactions
-        assert not history.contracts
-        assert history.current_team_id is None
-        assert not history.teams_played_for
-    
-    def test_add_transaction(
-        self,
-        history: PlayerHistory,
-        team_id: UUID
-    ) -> None:
-        """Test adding transaction to history."""
-        history.add_transaction(
-            TransactionType.FREE_AGENT_SIGNING,
-            to_team_id=team_id,
-            details={"salary": 1_000_000}
-        )
-        
-        assert len(history.transactions) == 1
-        assert history.current_team_id == team_id
-    
-    def test_add_contract(
-        self,
-        history: PlayerHistory,
-        team_id: UUID
-    ) -> None:
-        """Test adding contract to history."""
-        now = datetime.now()
-        history.add_contract(
-            team_id=team_id,
-            salary=1_000_000,
-            length_years=2,
-            start_date=now,
-            end_date=now + timedelta(days=730)
+            position=Position.CENTER
         )
         
         assert len(history.contracts) == 1
-        assert team_id in history.teams_played_for
+        contract = history.contracts[0]
+        assert contract.position == Position.CENTER
+        assert not contract.is_manager_contract
     
-    def test_end_current_contract(
-        self,
-        history: PlayerHistory,
-        team_id: UUID
-    ) -> None:
-        """Test ending current contract."""
-        # Add contract
+    def test_add_manager_contract(self, participant_id, team_id):
+        """Test adding a manager contract."""
+        history = ParticipantHistory(participant_id=participant_id)
+        
         now = datetime.now()
         history.add_contract(
             team_id=team_id,
-            salary=1_000_000,
+            salary=150000,
+            length_years=1,
+            start_date=now,
+            end_date=now + timedelta(days=365),
+            manager_role=ManagerRole.GM
+        )
+        
+        assert len(history.contracts) == 1
+        contract = history.contracts[0]
+        assert contract.manager_role == ManagerRole.GM
+        assert contract.is_manager_contract
+    
+    def test_invalid_contract_no_role(self, participant_id, team_id):
+        """Test adding contract without position or role fails."""
+        history = ParticipantHistory(participant_id=participant_id)
+        
+        now = datetime.now()
+        with pytest.raises(ValueError, match="Must specify either position or manager_role"):
+            history.add_contract(
+                team_id=team_id,
+                salary=1000000,
+                length_years=2,
+                start_date=now,
+                end_date=now + timedelta(days=730)
+            )
+    
+    def test_current_roles_tracking(self, participant_id, team_id):
+        """Test tracking current roles with multiple contracts."""
+        history = ParticipantHistory(participant_id=participant_id)
+        now = datetime.now()
+        
+        # Add player contract
+        history.add_contract(
+            team_id=team_id,
+            salary=1000000,
             length_years=2,
             start_date=now,
-            end_date=now + timedelta(days=730)
+            end_date=now + timedelta(days=730),
+            position=Position.CENTER
         )
         
-        # End contract
-        end_date = now + timedelta(days=365)
+        # Add manager contract
+        history.add_contract(
+            team_id=team_id,
+            salary=150000,
+            length_years=1,
+            start_date=now,
+            end_date=now + timedelta(days=365),
+            manager_role=ManagerRole.GM
+        )
+        
+        roles = history.current_roles
+        assert roles["player_position"] == Position.CENTER
+        assert roles["manager_role"] == ManagerRole.GM
+    
+    def test_end_specific_contract(self, participant_id, team_id):
+        """Test ending specific contract types."""
+        history = ParticipantHistory(participant_id=participant_id)
+        now = datetime.now()
+        
+        # Add both contract types
+        history.add_contract(
+            team_id=team_id,
+            salary=1000000,
+            length_years=2,
+            start_date=now,
+            end_date=now + timedelta(days=730),
+            position=Position.CENTER
+        )
+        
+        history.add_contract(
+            team_id=team_id,
+            salary=150000,
+            length_years=1,
+            start_date=now,
+            end_date=now + timedelta(days=365),
+            manager_role=ManagerRole.GM
+        )
+        
+        # End player contract
+        end_date = now + timedelta(days=100)
         history.end_current_contract(
             end_date=end_date,
-            reason=TransactionType.RELEASE
+            reason=TransactionType.RELEASE,
+            is_manager_contract=False
         )
         
-        assert len(history.transactions) == 1
-        assert history.transactions[0].type == TransactionType.RELEASE
-        assert history.contracts[0].actual_end_date == end_date 
+        # Verify only player contract ended
+        roles = history.current_roles
+        assert roles["player_position"] is None  # Player contract ended
+        assert roles["manager_role"] == ManagerRole.GM  # Manager contract still active
+        
+        # Verify transaction details
+        latest_transaction = history.transactions[-1]
+        assert latest_transaction.type == TransactionType.RELEASE
+        assert latest_transaction.details["contract_type"] == "player" 
