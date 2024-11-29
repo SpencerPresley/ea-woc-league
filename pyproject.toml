@@ -47,8 +47,8 @@ dev = [
 [tool.pdm]
 distribution = true
 
-[tool.pdm.dev-dependencies]
-dev = [".[dev]"]
+# [tool.pdm.dev-dependencies]
+# dev = [".[dev]"]
 
 [tool.pytest.ini_options]
 addopts = "--cov=ea_nhl_stats --cov-report=term-missing"
