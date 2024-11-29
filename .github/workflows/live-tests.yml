@@ -25,9 +25,8 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm lock
-        pdm install --dev
+        pdm sync --dev
         
     - name: Run live tests
       run: |
-        pdm run pytest live_tests/ -v
+        pdm run -v pytest live_tests/ -v

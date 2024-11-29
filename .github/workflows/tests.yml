@@ -28,12 +28,11 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pdm lock
-        pdm install --dev
+        pdm sync --dev
         
     - name: Run tests with coverage
       run: |
-        pdm run pytest --cov --cov-report=xml
+        pdm run -v pytest --cov --cov-report=xml
         
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
