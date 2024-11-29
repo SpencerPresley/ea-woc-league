@@ -166,3 +166,5 @@ cython_debug/
 
 # Coverage reports
 coverage.xml
+
+.env
