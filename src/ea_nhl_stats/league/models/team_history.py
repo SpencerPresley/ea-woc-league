@@ -1,32 +1,27 @@
-"""Models for tracking team history and statistics across seasons.
+"""Models for tracking team statistics.
 
-This module defines models for tracking team statistics and match history
-across multiple seasons. It provides functionality for aggregating team
-performance metrics and maintaining detailed match records.
+This module defines models for tracking team statistics and match history.
+It provides functionality for aggregating team performance metrics and
+maintaining detailed match records.
 """
 
-from typing import Dict, List, Optional
-from uuid import UUID
-from datetime import datetime
-
+from typing import Dict
 from pydantic import BaseModel, Field, computed_field
 
 from ea_nhl_stats.models.game.ea_club_stats import ClubStats
 
 
-class SeasonTeamStats(BaseModel):
-    """Statistics for a team in a single season.
+class TeamStats(BaseModel):
+    """Statistics for a team.
     
-    This class maintains both match-by-match statistics and season aggregates
-    for a team. It serves as a container for all statistical data within
-    a single season.
+    This class maintains both match-by-match statistics and aggregates
+    for a team. It serves as a container for all statistical data.
     
     Attributes:
-        season: The season number these stats are for
         matches_played: Total number of matches played
         matches: Dictionary of match statistics, keyed by match ID
-        wins: Total wins in the season
-        losses: Total losses in the season
+        wins: Total wins
+        losses: Total losses
         goals_for: Total goals scored
         goals_against: Total goals against
         shots: Total shots taken
@@ -38,17 +33,11 @@ class SeasonTeamStats(BaseModel):
         time_on_attack: Total time on attack (in seconds)
     """
     
-    # Season identification
-    season: int = Field(
-        gt=0,  # Must be positive
-        description="Season number these stats are for"
-    )
-    
     # Match tracking
     matches_played: int = Field(
         default=0,
         ge=0,  # Cannot be negative
-        description="Number of matches played in the season"
+        description="Number of matches played"
     )
     matches: Dict[str, ClubStats] = Field(
         default_factory=dict,
@@ -59,12 +48,12 @@ class SeasonTeamStats(BaseModel):
     wins: int = Field(
         default=0,
         ge=0,
-        description="Total wins in the season"
+        description="Total wins"
     )
     losses: int = Field(
         default=0,
         ge=0,
-        description="Total losses in the season"
+        description="Total losses"
     )
     goals_for: int = Field(
         default=0,
@@ -119,14 +108,14 @@ class SeasonTeamStats(BaseModel):
     def add_match(self, match_id: str, stats: ClubStats) -> None:
         """Add statistics from a single match.
         
-        This method processes match statistics and updates season totals.
+        This method processes match statistics and updates totals.
         
         Args:
             match_id: Unique identifier for the match
             stats: Statistics from the match
             
         Note:
-            This method automatically updates all season totals.
+            This method automatically updates all totals.
         """
         # Store match stats
         self.matches[match_id] = stats
@@ -148,13 +137,13 @@ class SeasonTeamStats(BaseModel):
     @computed_field
     @property
     def points(self) -> int:
-        """Total points in the season (2 for win, 0 for loss)."""
+        """Total points (2 for win, 0 for loss)."""
         return self.wins * 2
     
     @computed_field
     @property
     def win_percentage(self) -> float:
-        """Win percentage for the season."""
+        """Win percentage."""
         if self.matches_played == 0:
             return 0.0
         return round((self.wins / self.matches_played) * 100, 2)
@@ -212,4 +201,5 @@ class SeasonTeamStats(BaseModel):
         """Average time on attack per game (in seconds)."""
         if self.matches_played == 0:
             return 0.0
-        return round(self.time_on_attack / self.matches_played, 2) 
+        return round(self.time_on_attack / self.matches_played, 2)
+    
