@@ -4,23 +4,15 @@ This module defines the core team models and registry for managing teams
 across different league levels.
 """
 
-from enum import Enum
 from typing import ClassVar, Dict, Optional, Set, Type
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
-from ea_nhl_stats.league.models.team_history import TeamStats
-from ea_nhl_stats.league.models.history import PlayerStats
+from ea_nhl_stats.league.models.stats.team_stats import TeamStats
+from ea_nhl_stats.league.models.stats.player_stats import PlayerStats
+from ea_nhl_stats.league.enums.league_level import LeagueLevel
 from ea_nhl_stats.league.enums.types import ManagerRole
-
-
-class LeagueLevel(str, Enum):
-    """Hockey league levels."""
-    NHL = "nhl"
-    AHL = "ahl"
-    ECHL = "echl"
-
 
 class LeagueTeam(BaseModel):
     """Abstract base team model for any hockey league level."""
@@ -119,24 +111,3 @@ class LeagueTeam(BaseModel):
         player_stats = self.historical_players[player_id]
         player_stats.games_played += 1
         player_stats.game_stats[match_id] = stats
-
-
-class TeamRegistry:
-    """Registry for team implementations."""
-    
-    _teams: ClassVar[Dict[str, Type[LeagueTeam]]] = {}
-    
-    @classmethod
-    def register(cls, team_id: str):
-        """Decorator to register a team implementation."""
-        def decorator(team_class: Type[LeagueTeam]):
-            cls._teams[team_id] = team_class
-            return team_class
-        return decorator
-    
-    @classmethod
-    def create(cls, team_id: str, **kwargs) -> LeagueTeam:
-        """Create a team instance by ID."""
-        if team_id not in cls._teams:
-            raise ValueError(f"No implementation for team: {team_id}")
-        return cls._teams[team_id](**kwargs) 

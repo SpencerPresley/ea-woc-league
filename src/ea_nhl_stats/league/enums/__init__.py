@@ -1,5 +1,6 @@
-"""League V2 enums package."""
+"""League enumeration types."""
 
-from .types import Position
+from ea_nhl_stats.league.enums.league_level import LeagueLevel
+from ea_nhl_stats.league.enums.team_identifier import TeamIdentifier
 
-__all__ = ['Position']
+__all__ = ['LeagueLevel', 'TeamIdentifier']

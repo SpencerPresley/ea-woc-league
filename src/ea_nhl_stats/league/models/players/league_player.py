@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 
 from ea_nhl_stats.league.enums.types import Position, ManagerRole
 from ea_nhl_stats.models.game.ea_match import Match
-from ea_nhl_stats.league.models.history import PlayerStats
+from ea_nhl_stats.league.models.stats.player_stats import PlayerStats
 
 
 class ManagerInfo(BaseModel):

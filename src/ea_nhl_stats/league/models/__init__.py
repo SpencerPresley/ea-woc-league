@@ -1,5 +1,12 @@
-"""League V2 models package."""
+"""League models package."""
 
-from .history import SeasonStats
+from ea_nhl_stats.league.models.players import LeaguePlayer
+from ea_nhl_stats.league.models.stats import PlayerStats, TeamStats
+from ea_nhl_stats.league.models.teams import LeagueTeam
 
-__all__ = ['SeasonStats']
+__all__ = [
+    'LeaguePlayer',
+    'PlayerStats',
+    'TeamStats',
+    'LeagueTeam',
+]
