@@ -5,14 +5,15 @@ It provides classes for tracking player statistics, managing roles, and handling
 the relationship between players and managers.
 """
 
-from typing import Optional, Dict, Set
+from typing import Dict, Optional
 from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
 from ea_nhl_stats.league.enums.types import Position, ManagerRole
-from ea_nhl_stats.models.game.ea_match import Match
+from ea_nhl_stats.league.enums.team_identifier import TeamIdentifier
 from ea_nhl_stats.league.models.stats.player_stats import PlayerStats
+from ea_nhl_stats.models.game.ea_player_stats import PlayerStats as EAPlayerStats
 
 
 class ManagerInfo(BaseModel):
@@ -51,28 +52,6 @@ class LeaguePlayer(BaseModel):
     name: str = Field(description="Player's display name")
     position: Position = Field(description="Player's primary position")
     
-    # Team associations
-    current_team_id: Optional[UUID] = Field(
-        default=None,
-        description="Current team ID"
-    )
-    team_history: Set[UUID] = Field(
-        default_factory=set,
-        description="Set of all teams played for"
-    )
-    
-    # Management info (if player is also a manager)
-    manager_info: Optional[ManagerInfo] = Field(
-        default=None,
-        description="Management role information if player is a manager"
-    )
-    
-    # Statistics tracking
-    stats: PlayerStats = Field(
-        default_factory=PlayerStats,
-        description="Global player statistics"
-    )
-    
     # EA NHL integration
     ea_id: Optional[str] = Field(
         default=None,
@@ -82,54 +61,58 @@ class LeaguePlayer(BaseModel):
         default=None,
         description="EA NHL display name"
     )
-    discord_id: Optional[str] = Field(
+    
+    # Management info (if player is also a manager)
+    manager_info: Optional[ManagerInfo] = Field(
         default=None,
-        description="Discord user ID"
+        description="Management role information if player is a manager"
     )
     
-    def join_team(self, team_id: UUID) -> None:
+    # Team-specific stats
+    team_stats: Dict[TeamIdentifier, PlayerStats] = Field(
+        default_factory=dict,
+        description="Stats for each team played for, keyed by team identifier"
+    )
+    
+    # Current team
+    current_team: Optional[TeamIdentifier] = Field(
+        default=None,
+        description="Current team identifier"
+    )
+    
+    def join_team(self, team_id: TeamIdentifier) -> None:
         """Record player joining a team.
         
         Args:
-            team_id: UUID of the team being joined
+            team_id: TeamIdentifier of the team being joined
         """
-        self.current_team_id = team_id
-        self.team_history.add(team_id)
+        self.current_team = team_id
+        if team_id not in self.team_stats:
+            self.team_stats[team_id] = PlayerStats()
     
     def leave_team(self) -> None:
         """Record player leaving their current team."""
-        self.current_team_id = None
+        self.current_team = None
     
-    def add_game_stats(self, match: Match, club_id: str) -> None:
-        """Add statistics from a single game.
-        
-        This method processes match statistics and updates the player's
-        global stats. It automatically creates the stats container if this is
-        the first game.
+    def add_game_stats(self, team_id: TeamIdentifier, match_id: UUID, stats: EAPlayerStats) -> None:
+        """Add game statistics for a specific team.
         
         Args:
-            match: The completed match
-            club_id: The club ID the player was on
+            team_id: The team identifier the stats are for
+            match_id: The match identifier
+            stats: The EA NHL stats from the match
             
         Note:
-            This method automatically updates all totals.
-            The team's roster stats should be updated separately.
+            If this is the first game with this team, it will create the stats container.
+            Stats are added to the team's stats even if it's not the player's current team.
         """
-        # Get player stats from match
-        if not self.ea_id or club_id not in match.players:
-            return  # Not our match
+        # Initialize team stats if needed
+        if team_id not in self.team_stats:
+            self.team_stats[team_id] = PlayerStats()
             
-        player_stats = match.players[club_id].get(self.ea_id)
-        if not player_stats:
-            return  # Player not in match
-            
-        # Add game stats and update totals
-        self.stats.games_played += 1
-        
-        # Generate UUID from match ID
-        hex_str = match.match_id[:32].ljust(32, '0')
-        match_uuid = UUID(hex_str)
-        
-        self.stats.game_stats[match_uuid] = player_stats
-        self.stats.positions.add(self.position)  # Use pre-set position
-    
+        # Add game stats
+        team_stats = self.team_stats[team_id]
+        team_stats.games_played += 1
+        team_stats.game_stats[match_id] = stats
+        team_stats.positions.add(self.position)  # Track position played
+

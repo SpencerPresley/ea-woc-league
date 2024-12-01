@@ -1,0 +1,1172 @@
+
+Season Structure Summary:
+================================================================================
+
+Season ID: 2024
+Number of Tiers: 1
+
+Match Analytics:
+----------------------------------------
+
+Possession:
+Home: 46.6%
+Away: 53.4%
+Time on Attack Differential: -175 seconds
+
+Efficiency:
+Shooting %:
+  Home: 45.5%
+  Away: 42.3%
+Passing %:
+  Home: 78.4%
+  Away: 71.9%
+
+Momentum:
+Shot Differential: -5
+Hit Differential: -6
+Takeaway/Giveaway Differential: +8
+
+NHL Teams:
+----------------------------------------
+
+- St. Louis Blues
+  ID: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+  League Level: nhl
+  EA Club ID: 1789
+  EA Club Name: LG Blues
+  Current roster: 6
+  Historical players: 6
+  Managers: 2
+
+  Team Stats:
+    Matches Played: 1
+    Wins: 0
+    Losses: 1
+    Points: 0
+    Win %: 0.0%
+    Goals For: 10
+    Goals Against: 11
+    Goals/Game: 10.0
+    Goals Against/Game: 11.0
+    Goal Differential: -1
+    Shots: 22
+    Shots Against: 0
+    Shooting %: 45.5%
+    Powerplay Goals: 3
+    Powerplay Opportunities: 4
+    Powerplay %: 75.0%
+    PK Goals Against: 0
+    PK Opportunities: 0
+    PK %: 100.0%
+    Time on Attack: 421 seconds
+    Time on Attack/Game: 421.0 seconds
+
+  Current Roster:
+
+    - vViperrz (LEFT_WING)
+      Role: gm
+      EA ID: 1669236396
+      EA Name: vViperrz
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 1
+        Level Display: 132
+        Position: leftWing
+        Position Sorted: 4
+        Platform: ps5
+        Is Guest: 0
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 100.0
+        Defense: 20.0
+        Teamplay: 65.0
+
+      Time Stats:
+        Time on Ice: 57 minutes
+        Time on Ice: 3421 seconds
+        Possession Time: 274 seconds
+
+      Skater Stats:
+        Goals: 3
+        Assists: 1
+        Points: 4
+        Plus/Minus: -2
+        PIM: 4
+        Penalties Drawn: 1
+
+      Shooting:
+        Shot Attempts: 9
+        Shots on Goal: 6
+        Shot on Net %: 66.7%
+        Shooting %: 50.0%
+        Missed Shots: 3
+
+      Passing:
+        Pass Attempts: 19
+        Completed Passes: 12
+        Pass %: 63.2%
+        Missed Passes: 7
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 10
+        Blocked Shots: 1
+        Deflections: 0
+        Interceptions: 1
+
+      Puck Control:
+        Takeaways: 0
+        Giveaways: 16
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 1
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 4
+        Major Penalties: 0
+        Minor Penalties: 2
+        Total Penalties: 2
+        Penalties Drawn: 1
+
+    - Pxtlick (GOALIE)
+      Role: agm
+      EA ID: 1719294631
+      EA Name: Pxtlick
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 21
+        Level Display: 0
+        Position: goalie
+        Position Sorted: 0
+        Platform: ps5
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 30.0
+        Defense: 75.0
+        Teamplay: 35.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3600 seconds
+        Possession Time: 0 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 0
+        Points: 0
+        Plus/Minus: +0
+        PIM: 0
+        Penalties Drawn: 0
+
+      Shooting:
+        Shot Attempts: 0
+        Shots on Goal: 0
+        Shot on Net %: 0.0%
+        Shooting %: 0.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 0
+        Completed Passes: 0
+        Pass %: 0.0%
+        Missed Passes: 0
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 0
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 0
+
+      Puck Control:
+        Takeaways: 0
+        Giveaways: 0
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 0
+
+      Goalie Stats:
+        Goals Against: 11
+        GAA: 11.00
+        Saves: 15
+        Shots Against: 26
+        Save %: 0.6%
+        Shutout Periods: 0
+        Goals Saved: 15
+        Save %: 57.7%
+
+        Breakaways:
+          Saves: 3
+          Shots: 4
+          Save %: 0.8%
+
+        Penalty Shots:
+          Saves: 0
+          Shots: 1
+          Save %: 0.0%
+
+        Other:
+          Desperation Saves: 2
+          Poke Checks: 0
+          PK Clear Zone: 0
+
+    - nbalark (RIGHT_WING)
+      EA ID: 1949338911
+      EA Name: nbalark
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 1
+        Level Display: 299
+        Position: rightWing
+        Position Sorted: 3
+        Platform: ps5
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 100.0
+        Defense: 40.0
+        Teamplay: 70.0
+
+      Time Stats:
+        Time on Ice: 58 minutes
+        Time on Ice: 3469 seconds
+        Possession Time: 286 seconds
+
+      Skater Stats:
+        Goals: 4
+        Assists: 2
+        Points: 6
+        Plus/Minus: -1
+        PIM: 0
+        Penalties Drawn: 0
+
+      Shooting:
+        Shot Attempts: 11
+        Shots on Goal: 8
+        Shot on Net %: 72.7%
+        Shooting %: 50.0%
+        Missed Shots: 3
+
+      Passing:
+        Pass Attempts: 16
+        Completed Passes: 13
+        Pass %: 81.2%
+        Missed Passes: 3
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 4
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 5
+
+      Puck Control:
+        Takeaways: 4
+        Giveaways: 10
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 2
+        Total Faceoffs: 2
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 1
+        Shorthanded Goals: 1
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 0
+
+    - Iaffyy (CENTER)
+      EA ID: 1003931597092
+      EA Name: Iaffyy
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 4
+        Level Display: 299
+        Position: center
+        Position Sorted: 5
+        Platform: ps5
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 100.0
+        Defense: 45.0
+        Teamplay: 75.0
+
+      Time Stats:
+        Time on Ice: 58 minutes
+        Time on Ice: 3474 seconds
+        Possession Time: 183 seconds
+
+      Skater Stats:
+        Goals: 3
+        Assists: 3
+        Points: 6
+        Plus/Minus: -1
+        PIM: 2
+        Penalties Drawn: 2
+
+      Shooting:
+        Shot Attempts: 5
+        Shots on Goal: 4
+        Shot on Net %: 80.0%
+        Shooting %: 75.0%
+        Missed Shots: 1
+
+      Passing:
+        Pass Attempts: 22
+        Completed Passes: 18
+        Pass %: 81.8%
+        Missed Passes: 4
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 7
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 7
+
+      Puck Control:
+        Takeaways: 4
+        Giveaways: 6
+
+      Faceoffs:
+        Faceoffs Won: 14
+        Faceoffs Lost: 23
+        Total Faceoffs: 37
+        Faceoff %: 37.8%
+
+      Special Teams:
+        Powerplay Goals: 1
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 2
+        Major Penalties: 0
+        Minor Penalties: 1
+        Total Penalties: 1
+        Penalties Drawn: 2
+
+    - HXBlBl (LEFT_DEFENSE)
+      EA ID: 1005600031321
+      EA Name: HXBlBl
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 15
+        Level Display: 299
+        Position: defenseMen
+        Position Sorted: 2
+        Platform: ps5
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 80.0
+        Defense: 30.0
+        Teamplay: 60.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3600 seconds
+        Possession Time: 116 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 1
+        Points: 1
+        Plus/Minus: -1
+        PIM: 2
+        Penalties Drawn: 1
+
+      Shooting:
+        Shot Attempts: 1
+        Shots on Goal: 1
+        Shot on Net %: 100.0%
+        Shooting %: 0.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 17
+        Completed Passes: 15
+        Pass %: 88.2%
+        Missed Passes: 2
+        Saucer Passes: 1
+
+      Physical Play:
+        Hits: 3
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 11
+
+      Puck Control:
+        Takeaways: 6
+        Giveaways: 2
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 1
+
+      Penalties:
+        Total PIM: 2
+        Major Penalties: 0
+        Minor Penalties: 1
+        Total Penalties: 1
+        Penalties Drawn: 1
+
+    - Big Boutchyy (LEFT_DEFENSE)
+      EA ID: 1008371113330
+      EA Name: Big Boutchyy
+      Current Team: 3e0ae4d8-a15c-4882-99b4-db70f239bb30
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 15
+        Level Display: 208
+        Position: defenseMen
+        Position Sorted: 1
+        Platform: xbsx
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 500
+        Team Side: 0
+        Score: 10
+        Opponent Team ID: 501
+        Opponent Club ID: 45048
+        Opponent Score: 11
+
+      Ratings:
+        Offense: 75.0
+        Defense: 25.0
+        Teamplay: 70.0
+
+      Time Stats:
+        Time on Ice: 59 minutes
+        Time on Ice: 3535 seconds
+        Possession Time: 163 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 1
+        Points: 1
+        Plus/Minus: -1
+        PIM: 2
+        Penalties Drawn: 0
+
+      Shooting:
+        Shot Attempts: 1
+        Shots on Goal: 1
+        Shot on Net %: 100.0%
+        Shooting %: 0.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 21
+        Completed Passes: 17
+        Pass %: 81.0%
+        Missed Passes: 4
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 7
+        Blocked Shots: 2
+        Deflections: 0
+        Interceptions: 5
+
+      Puck Control:
+        Takeaways: 3
+        Giveaways: 5
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 1
+
+      Penalties:
+        Total PIM: 2
+        Major Penalties: 0
+        Minor Penalties: 1
+        Total Penalties: 1
+        Penalties Drawn: 0
+
+- Calgary Flames
+  ID: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+  League Level: nhl
+  EA Club ID: 45048
+  EA Club Name: LG Calgary Flames
+  Current roster: 6
+  Historical players: 6
+  Managers: 2
+
+  Team Stats:
+    Matches Played: 1
+    Wins: 1
+    Losses: 0
+    Points: 2
+    Win %: 100.0%
+    Goals For: 11
+    Goals Against: 10
+    Goals/Game: 11.0
+    Goals Against/Game: 10.0
+    Goal Differential: +1
+    Shots: 26
+    Shots Against: 0
+    Shooting %: 42.3%
+    Powerplay Goals: 2
+    Powerplay Opportunities: 4
+    Powerplay %: 50.0%
+    PK Goals Against: 0
+    PK Opportunities: 0
+    PK %: 100.0%
+    Time on Attack: 596 seconds
+    Time on Attack/Game: 596.0 seconds
+
+  Current Roster:
+
+    - Pertuu- (CENTER)
+      Role: gm
+      EA ID: 1847429195
+      EA Name: Pertuu-
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 1
+        Level Display: 299
+        Position: center
+        Position Sorted: 5
+        Platform: ps5
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 85.0
+        Defense: 65.0
+        Teamplay: 75.0
+
+      Time Stats:
+        Time on Ice: 57 minutes
+        Time on Ice: 3434 seconds
+        Possession Time: 208 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 2
+        Points: 2
+        Plus/Minus: +1
+        PIM: 4
+        Penalties Drawn: 1
+
+      Shooting:
+        Shot Attempts: 1
+        Shots on Goal: 2
+        Shot on Net %: 200.0%
+        Shooting %: 0.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 15
+        Completed Passes: 10
+        Pass %: 66.7%
+        Missed Passes: 5
+        Saucer Passes: 1
+
+      Physical Play:
+        Hits: 9
+        Blocked Shots: 0
+        Deflections: 1
+        Interceptions: 3
+
+      Puck Control:
+        Takeaways: 2
+        Giveaways: 10
+
+      Faceoffs:
+        Faceoffs Won: 24
+        Faceoffs Lost: 13
+        Total Faceoffs: 37
+        Faceoff %: 64.9%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 1
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 4
+        Major Penalties: 0
+        Minor Penalties: 2
+        Total Penalties: 2
+        Penalties Drawn: 1
+
+    - Zapssey (GOALIE)
+      Role: agm
+      EA ID: 1963192309
+      EA Name: Zapssey
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 21
+        Level Display: 253
+        Position: goalie
+        Position Sorted: 0
+        Platform: xbsx
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 40.0
+        Defense: 70.0
+        Teamplay: 30.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3599 seconds
+        Possession Time: 0 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 0
+        Points: 0
+        Plus/Minus: +0
+        PIM: 0
+        Penalties Drawn: 0
+
+      Shooting:
+        Shot Attempts: 0
+        Shots on Goal: 0
+        Shot on Net %: 0.0%
+        Shooting %: 0.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 0
+        Completed Passes: 0
+        Pass %: 0.0%
+        Missed Passes: 0
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 0
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 0
+
+      Puck Control:
+        Takeaways: 0
+        Giveaways: 0
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 0
+
+      Goalie Stats:
+        Goals Against: 8
+        GAA: 8.00
+        Saves: 13
+        Shots Against: 21
+        Save %: 0.6%
+        Shutout Periods: 0
+        Goals Saved: 13
+        Save %: 61.9%
+
+        Breakaways:
+          Saves: 2
+          Shots: 3
+          Save %: 0.7%
+
+        Penalty Shots:
+          Saves: 0
+          Shots: 0
+          Save %: 0.0%
+
+        Other:
+          Desperation Saves: 0
+          Poke Checks: 0
+          PK Clear Zone: 0
+
+    - I Fears l (LEFT_DEFENSE)
+      EA ID: 1004779160448
+      EA Name: I Fears l
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 15
+        Level Display: 35
+        Position: defenseMen
+        Position Sorted: 1
+        Platform: xbsx
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 100.0
+        Defense: 25.0
+        Teamplay: 75.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3600 seconds
+        Possession Time: 268 seconds
+
+      Skater Stats:
+        Goals: 2
+        Assists: 1
+        Points: 3
+        Plus/Minus: +1
+        PIM: 0
+        Penalties Drawn: 2
+
+      Shooting:
+        Shot Attempts: 4
+        Shots on Goal: 4
+        Shot on Net %: 100.0%
+        Shooting %: 50.0%
+        Missed Shots: 0
+
+      Passing:
+        Pass Attempts: 32
+        Completed Passes: 23
+        Pass %: 71.9%
+        Missed Passes: 9
+        Saucer Passes: 2
+
+      Physical Play:
+        Hits: 1
+        Blocked Shots: 3
+        Deflections: 0
+        Interceptions: 4
+
+      Puck Control:
+        Takeaways: 4
+        Giveaways: 11
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 2
+
+    - Tdxbzz (RIGHT_WING)
+      EA ID: 1004927267482
+      EA Name: Tdxbzz
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 6
+        Level Display: 51
+        Position: rightWing
+        Position Sorted: 3
+        Platform: xbsx
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 100.0
+        Defense: 60.0
+        Teamplay: 60.0
+
+      Time Stats:
+        Time on Ice: 58 minutes
+        Time on Ice: 3481 seconds
+        Possession Time: 313 seconds
+
+      Skater Stats:
+        Goals: 3
+        Assists: 5
+        Points: 8
+        Plus/Minus: +1
+        PIM: 4
+        Penalties Drawn: 2
+
+      Shooting:
+        Shot Attempts: 7
+        Shots on Goal: 6
+        Shot on Net %: 85.7%
+        Shooting %: 50.0%
+        Missed Shots: 1
+
+      Passing:
+        Pass Attempts: 13
+        Completed Passes: 7
+        Pass %: 53.9%
+        Missed Passes: 6
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 10
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 4
+
+      Puck Control:
+        Takeaways: 4
+        Giveaways: 10
+
+      Faceoffs:
+        Faceoffs Won: 1
+        Faceoffs Lost: 1
+        Total Faceoffs: 2
+        Faceoff %: 50.0%
+
+      Special Teams:
+        Powerplay Goals: 1
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 4
+        Major Penalties: 0
+        Minor Penalties: 2
+        Total Penalties: 2
+        Penalties Drawn: 2
+
+    - bwubzz (LEFT_WING)
+      EA ID: 1006121497599
+      EA Name: bwubzz
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 2
+        Level Display: 299
+        Position: leftWing
+        Position Sorted: 4
+        Platform: xbsx
+        Is Guest: 0
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 100.0
+        Defense: 60.0
+        Teamplay: 85.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3600 seconds
+        Possession Time: 262 seconds
+
+      Skater Stats:
+        Goals: 6
+        Assists: 2
+        Points: 8
+        Plus/Minus: +1
+        PIM: 0
+        Penalties Drawn: 1
+
+      Shooting:
+        Shot Attempts: 14
+        Shots on Goal: 12
+        Shot on Net %: 85.7%
+        Shooting %: 50.0%
+        Missed Shots: 2
+
+      Passing:
+        Pass Attempts: 12
+        Completed Passes: 9
+        Pass %: 75.0%
+        Missed Passes: 3
+        Saucer Passes: 0
+
+      Physical Play:
+        Hits: 7
+        Blocked Shots: 0
+        Deflections: 0
+        Interceptions: 5
+
+      Puck Control:
+        Takeaways: 3
+        Giveaways: 11
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 1
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 1
+
+    - Richzii (LEFT_DEFENSE)
+      EA ID: 1006486131051
+      EA Name: Richzii
+      Current Team: 0727e6a7-4807-441a-8aa0-8a76b7aed284
+      Teams Played For: 1
+
+      Basic Info:
+        Level: 15
+        Level Display: 4
+        Position: defenseMen
+        Position Sorted: 2
+        Platform: xbsx
+        Is Guest: 1
+        DNF: 0
+        Game Type: 5
+
+      Team Info:
+        Team ID: 501
+        Team Side: 1
+        Score: 11
+        Opponent Team ID: 500
+        Opponent Club ID: 1789
+        Opponent Score: 10
+
+      Ratings:
+        Offense: 100.0
+        Defense: 50.0
+        Teamplay: 85.0
+
+      Time Stats:
+        Time on Ice: 60 minutes
+        Time on Ice: 3600 seconds
+        Possession Time: 118 seconds
+
+      Skater Stats:
+        Goals: 0
+        Assists: 4
+        Points: 4
+        Plus/Minus: +1
+        PIM: 0
+        Penalties Drawn: 0
+
+      Shooting:
+        Shot Attempts: 2
+        Shots on Goal: 1
+        Shot on Net %: 50.0%
+        Shooting %: 0.0%
+        Missed Shots: 1
+
+      Passing:
+        Pass Attempts: 19
+        Completed Passes: 17
+        Pass %: 89.5%
+        Missed Passes: 2
+        Saucer Passes: 1
+
+      Physical Play:
+        Hits: 10
+        Blocked Shots: 1
+        Deflections: 0
+        Interceptions: 7
+
+      Puck Control:
+        Takeaways: 3
+        Giveaways: 4
+
+      Faceoffs:
+        Faceoffs Won: 0
+        Faceoffs Lost: 0
+        Total Faceoffs: 0
+        Faceoff %: 0.0%
+
+      Special Teams:
+        Powerplay Goals: 0
+        Shorthanded Goals: 0
+        Game Winning Goals: 0
+        PK Clear Zone: 0
+
+      Penalties:
+        Total PIM: 0
+        Major Penalties: 0
+        Minor Penalties: 0
+        Total Penalties: 0
+        Penalties Drawn: 0
