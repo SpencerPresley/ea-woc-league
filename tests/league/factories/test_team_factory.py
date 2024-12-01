@@ -82,7 +82,7 @@ def test_team_factory_create_with_kwargs(clear_factory, mock_team_class):
     assert team.ea_club_name == ea_club_name
 
 
-def test_team_factory_unregistered_identifier():
+def test_team_factory_unregistered_identifier(clear_factory):
     """Test factory behavior with unregistered team identifier."""
     # Try to create a team that isn't registered
     with pytest.raises(ValueError) as exc_info:

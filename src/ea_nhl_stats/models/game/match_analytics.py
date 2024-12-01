@@ -86,12 +86,12 @@ class MatchAnalytics:
         if not all([home_agg, away_agg, home_club, away_club]):
             return None
             
-        total_possession = home_agg.skpossession + away_agg.skpossession
+        total_possession = float(home_agg.skpossession + away_agg.skpossession)
         
         return PossessionMetrics(
-            possession_differential=home_agg.skpossession - away_agg.skpossession,
-            possession_percentage_home=(home_agg.skpossession / total_possession * 100) if total_possession > 0 else 50.0,
-            possession_percentage_away=(away_agg.skpossession / total_possession * 100) if total_possession > 0 else 50.0,
+            possession_differential=float(home_agg.skpossession - away_agg.skpossession),
+            possession_percentage_home=(float(home_agg.skpossession) / total_possession * 100) if total_possession > 0 else 50.0,
+            possession_percentage_away=(float(away_agg.skpossession) / total_possession * 100) if total_possession > 0 else 50.0,
             time_on_attack_differential=float(home_club.time_on_attack) - float(away_club.time_on_attack)
         )
 

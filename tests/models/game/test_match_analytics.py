@@ -18,27 +18,36 @@ def ea_response_data():
 
 
 @pytest.fixture
-def matches(ea_response_data) -> List[Match]:
-    """Create test matches from EA API data."""
-    return [Match.model_validate(match_data) for match_data in ea_response_data]
+def test_match(ea_response_data) -> Match:
+    """Create test match from EA API data."""
+    return Match.model_validate(ea_response_data[0])
 
 
-def test_match_analytics(matches):
+def test_match_analytics(test_match):
     """Test match analytics functionality."""
-    analytics = MatchAnalytics(matches)
+    analytics = MatchAnalytics(test_match)
     
-    # Test basic analytics
-    assert len(analytics.matches) > 0
-    assert isinstance(analytics.matches[0], Match)
+    # Test possession metrics
+    possession = analytics.get_possession_metrics()
+    assert possession is not None
+    assert isinstance(possession.possession_differential, float)
+    assert isinstance(possession.possession_percentage_home, float)
+    assert isinstance(possession.possession_percentage_away, float)
     
-    # Test club stats
-    club_stats = analytics.get_club_stats("1789")  # LG Blues
-    assert club_stats is not None
-    assert club_stats.goals > 0
-    assert club_stats.shots > 0
+    # Test efficiency metrics
+    efficiency = analytics.get_efficiency_metrics()
+    assert efficiency is not None
+    assert isinstance(efficiency.home_shooting_efficiency, float)
+    assert isinstance(efficiency.away_shooting_efficiency, float)
     
-    # Test player stats
-    player_stats = analytics.get_player_stats("1789", "1669236396")  # vViperrz
-    assert player_stats is not None
-    assert player_stats.skgoals > 0
-    assert player_stats.skshots > 0 
+    # Test special teams metrics
+    special_teams = analytics.get_special_teams_metrics()
+    assert special_teams is not None
+    assert isinstance(special_teams.home_powerplay_pct, float)
+    assert isinstance(special_teams.away_powerplay_pct, float)
+    
+    # Test momentum metrics
+    momentum = analytics.get_momentum_metrics()
+    assert momentum is not None
+    assert isinstance(momentum.shot_differential, int)
+    assert isinstance(momentum.hit_differential, int) 
